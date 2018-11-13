@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.video_row.view.*
 
 class MainAdapter: RecyclerView.Adapter<CustomViewHolder>() {
 
-    val videoTitles = listOf("First title", "Second", "3rd", "More titles...")
+    val videoTitles = listOf("First title", "Second", "3rd", "More titles...yeah")
 
     // numberOfItems
     override fun getItemCount(): Int {
