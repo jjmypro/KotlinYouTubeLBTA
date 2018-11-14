@@ -6,13 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.video_row.view.*
 
-class MainAdapter: RecyclerView.Adapter<CustomViewHolder>() {
+
+// modifying MainAdapter so it can hold a reference of our HomeFeed
+// this is done by adding a constructor to MainAdapter that takes in the properties of
+// val homeFeed: HomeFeed
+class MainAdapter(val homeFeed: HomeFeed): RecyclerView.Adapter<CustomViewHolder>() {
 
     val videoTitles = listOf("First title", "Second", "3rd", "More titles...yeah")
 
     // numberOfItems
     override fun getItemCount(): Int {
-        return videoTitles.size
+        return homeFeed.videos.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -23,8 +27,9 @@ class MainAdapter: RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val videoTitle = videoTitles.get(position)
-        holder.view.textView_video_title.text = videoTitle
+ //       val videoTitle = videoTitles.get(position)
+        val video = homeFeed.videos.get(position)
+        holder.view.textView_video_title?.text = video.name
     }
 }
 

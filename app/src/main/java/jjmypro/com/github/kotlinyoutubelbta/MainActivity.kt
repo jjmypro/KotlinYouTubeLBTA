@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 //        recyclerView_main.setBackgroundColor(Color.BLUE)
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        recyclerView_main.adapter = MainAdapter()
+//      recyclerView_main.adapter = MainAdapter()
 
         fetchJson()
     }
@@ -46,6 +46,10 @@ class MainActivity : AppCompatActivity() {
                 val gson = GsonBuilder().create()
 
                 val homeFeed = gson.fromJson(body, HomeFeed::class.java)
+
+                runOnUiThread {
+                    recyclerView_main.adapter = MainAdapter(homeFeed)
+                }
             }
 
             override fun onFailure(call: Call?, e: IOException) {
